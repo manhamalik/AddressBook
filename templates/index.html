@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Address Book</title>
+<style>
+        body {
+            background-color: #f1f1f1;
+           font-family: Verdana, Geneva, sans-serif;  /* Default font for the body */
+        }
+
+        h1 {
+           font-family: Verdana, Geneva, sans-serif; /* title font */
+        }
+
+        h2 {
+            font-family: Verdana, Geneva, sans-serif; /* headings font */
+        }
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .contacts-section {
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        width: 40%;
+    }
+
+    .add-contact-section {
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        width: 40%;
+        height: 300px; /* fixed height */
+    }
+
+    .delete-btn {
+        margin-top: 6px;
+        background-color: #ff0000;
+        color: #ffffff;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        font-family: Verdana, Geneva, sans-serif;
+    }
+
+      .add-contact-btn {
+        background-color: #ff0000;
+        color: #ffffff;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        font-family: Verdana, Geneva, sans-serif;
+    }
+          .form-label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+  
+          .input-field {
+            width: 30%;
+        }
+</style>
+
+</head>
+<body>
+   <center><h1>Address Book</h1></center>
+
+    <div class="container">
+        <div class="contacts-section">
+            <center><h2>Contacts</h2></center>
+            <ul>
+                {% for contact in contacts %}
+                <p><li class="contact-item">
+                  <strong>{{ contact.name }}</strong><br>
+                  {{ contact.address }}<br>
+                  {{ contact.phone }}
+                    <form method="POST">
+                        <input type="hidden" name="delete" value="{{ loop.index0 }}">
+                          <input type="submit" class="delete-btn" value="Delete">
+                    </form>
+                </li></p>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="add-contact-section">
+           <center> <h2>Add Contact</h2> </center> <center>
+            <form method="POST">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" name="name" required class="input-field" required><br>
+<br>
+                <label for="address" class="form-label">Address:</label>
+                <input type="text" name="address" required class="input-field" required><br>
+<br>
+                <label for="phone" class="form-label">Phone:</label>
+                <input type="text" name="phone" required class="input-field" required><br>
+<br>
+                <input type="submit" class="add-contact-btn" value="Add Contact"></center>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
