@@ -1,7 +1,12 @@
 from flask import Flask, render_template, request
 from dataclasses import dataclass
+import os
 
 app = Flask(__name__)
+
+# Set the template folder path to the root directory
+app.template_folder = os.path.dirname(os.path.abspath(__file__))
+
 app.config['DEBUG'] = True
 
 # Data class representing a contact
